@@ -24,3 +24,6 @@ cmake_install.cmake
 
 # Debug files
 *.dSYM/
+
+# Python version
+.python-version
