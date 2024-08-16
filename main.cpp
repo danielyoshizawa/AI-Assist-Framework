@@ -1,29 +1,19 @@
 #include <iostream>
 #include <string>
-#include <httplib.h>  // A simple HTTP library for C++
+#include <thread>
+#include "service.h"
 
-class Microservice {
-private:
-    int port;
-public:
-    Microservice(int port) : port{port} {
-        // Define API endpoint
-        server.Get("/api/example", [this](const httplib::Request&, httplib::Response& res) {
-            res.set_content("Hello from the microservice!\n", "text/plain");
-        });
-    }
+int main()
+{
+    Service service(3000);  // Create service on port 3000
+    Service service2(3001); // Create service on port 3001
 
-    void start() {
-        std::cout << "Microservice is running on port " << port << std::endl;
-        server.listen("localhost", port);
-    }
+    std::thread t([&service]()
+                  { service.start(); });
+    std::thread t2([&service2]()
+                   { service2.fetchData(); });
+    t.join();
+    t2.join();
 
-private:
-    httplib::Server server;  // HTTP server instance
-};
-
-int main() {
-    Microservice service(3000);  // Create service on port 3000
-    service.start();              // Start the service
     return 0;
 }
