@@ -6,13 +6,12 @@
 class Service
 {
 public:
-    Service(int port);
-    void start();
-    void fetchData();
+    void Start(int && port);
 
-private:
+    virtual void SetupRoutes() = 0;
+
+protected:
     httplib::Server server;
-    int port;
 };
 
 #endif
