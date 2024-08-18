@@ -1,5 +1,6 @@
 [requires]
 cpp-httplib/0.16.0
+catch2/3.5.0
 
 [generators]
 CMakeDeps
