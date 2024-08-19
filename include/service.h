@@ -6,7 +6,7 @@
 class Service
 {
 public:
-    void Start(int && port);
+    void Start(std::string name, int && port);
 
     virtual void SetupRoutes() = 0;
 

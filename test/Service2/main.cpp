@@ -14,6 +14,6 @@ int main()
 {
     Service2 service;
     service.SetupRoutes();
-    service.Start(3001);
+    service.Start("service2", 3001);
     return 0;
 }
